@@ -1,8 +1,8 @@
 // import hoistStatics from 'hoist-non-react-statics'
-import invariant from 'invariant'
+const invariant = require('invariant')
 // import { Component, createElement } from 'react'
 
-import Subscription from '../utils/Subscription'
+const Subscription = require('../utils/Subscription')
 // import { storeShape, subscriptionShape } from '../utils/PropTypes'
 
 let hotReloadingVersion = 0
@@ -29,7 +29,7 @@ function makeSelectorStateful(sourceSelector, store) {
   return selector
 }
 
-export default function connectAdvanced(
+module.exports.connectAdvanced = function (
   /*
     selectorFactory is a func that is responsible for returning the selector function used to
     compute new props from state, props, and dispatch. For example:
@@ -153,16 +153,19 @@ export default function connectAdvanced(
         // re-render.
         this.__subscription.trySubscribe()
         this.__selector.run(this.props)
-        if (this.__selector.shouldComponentUpdate) this[UPDATERKEY]()
+        if (this.__selector.shouldComponentUpdate) {
+          this[UPDATERKEY]()
+          this.__selector.shouldComponentUpdate = false
+        }
       },
 
-      componentWillReceiveProps(nextProps) {
-        this.__selector.run(nextProps)
-      },
+      // componentWillReceiveProps(nextProps) {
+      //   this.__selector.run(nextProps)
+      // },
 
-      shouldComponentUpdate() {
-        return this.__selector.shouldComponentUpdate
-      },
+      // shouldComponentUpdate() {
+      //   return this.__selector.shouldComponentUpdate
+      // },
 
       onDestroy() {
         if (this.__subscription) this.__subscription.tryUnsubscribe()
@@ -303,3 +306,4 @@ export default function connectAdvanced(
     return connect
   }
 }
+
