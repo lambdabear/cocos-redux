@@ -1,0 +1,31 @@
+{
+  "name": "cocos-redux",
+  "version": "0.1.0",
+  "description": "cocos creator script bindings for redux",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/lambdabear/cocos-redux.git"
+  },
+  "keywords": [
+    "cocos",
+    "redux"
+  ],
+  "author": "Zhang Yi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lambdabear/cocos-redux/issues"
+  },
+  "homepage": "https://github.com/lambdabear/cocos-redux#readme",
+  "dependencies": {
+    "redux": "^3.7.2"
+  },
+  "devDependencies": {
+    "eslint": "^4.18.1",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.9.0"
+  }
+}
