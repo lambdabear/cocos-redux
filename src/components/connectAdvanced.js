@@ -1,8 +1,8 @@
 // import hoistStatics from 'hoist-non-react-statics'
-const invariant = require('invariant')
-// import { Component, createElement } from 'react'
-
-const Subscription = require('../utils/Subscription')
+import invariant from 'invariant'
+ // import { Component, createElement } from 'react'
+ 	 
+import Subscription from '../utils/Subscription'
 // import { storeShape, subscriptionShape } from '../utils/PropTypes'
 
 let hotReloadingVersion = 0
@@ -29,7 +29,7 @@ function makeSelectorStateful(sourceSelector, store) {
   return selector
 }
 
-module.exports.connectAdvanced = function (
+export default function connectAdvanced(
   /*
     selectorFactory is a func that is responsible for returning the selector function used to
     compute new props from state, props, and dispatch. For example:
