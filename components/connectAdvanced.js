@@ -203,7 +203,9 @@ module.exports.connectAdvanced = function (
         if (selector.shouldComponentUpdate) {
           this.props = this.__selector.props
           // console.log(this.props)
-          this[UPDATERKEY]()
+          if (typeof this[UPDATERKEY] === 'function') {
+            this[UPDATERKEY]()
+          }
           selector.shouldComponentUpdate = false
         }
       },
