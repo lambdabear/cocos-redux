@@ -146,7 +146,7 @@ module.exports.connectAdvanced = function (
       start: function () {
         if (shouldHandleStateChanges) {
           this.__subscription.trySubscribe()
-          this.__selector.run(this.props)
+          this.__selector.run({})
           if (this.__selector.shouldComponentUpdate) {
             this.props = this.__selector.props
             // this[UPDATERKEY]()
@@ -171,7 +171,7 @@ module.exports.connectAdvanced = function (
       __initSelector() {
         const sourceSelector = selectorFactory(store.dispatch, selectorFactoryOptions)
         this.__selector = makeSelectorStateful(sourceSelector, this.__store)
-        this.__selector.run(this.props)
+        this.__selector.run({})
         this.props = this.__selector.props
       },
 
@@ -194,7 +194,7 @@ module.exports.connectAdvanced = function (
 
       __onStateChange() {
         const selector = this.__selector
-        selector.run(this.props)
+        selector.run({})
 
         if (selector.error) {
           throw selector.error
