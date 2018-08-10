@@ -145,7 +145,13 @@ module.exports.connectAdvanced = function (
 
       start: function () {
         if (shouldHandleStateChanges) {
+          if (!this.__subscription) {
+            this.__initSubscription()
+          } 
           this.__subscription.trySubscribe()
+          if (!this.__selector) {
+            this.__initSelector()
+          }       
           this.__selector.run({})
           if (this.__selector.shouldComponentUpdate) {
             this.props = this.__selector.props
@@ -204,7 +210,7 @@ module.exports.connectAdvanced = function (
           this.props = this.__selector.props
           // console.log(this.props)
           if (typeof this[UPDATERKEY] === 'function') {
-            this[UPDATERKEY]()
+            this.scheduleOnce(() => this[UPDATERKEY](), 0)
           }
           selector.shouldComponentUpdate = false
         }
